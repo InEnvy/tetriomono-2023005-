@@ -1,0 +1,85 @@
+/* background and layout */
+html, body {
+  height: 100%;
+  margin: 0;
+  background-color: #cfeffd; /* explicit light blue fallback */
+}
+
+body {
+  background: linear-gradient(180deg, #cfeffd 0%, #b6e6ff 100%); /* light blue */
+  background-image:
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 32px 32px, 32px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  color: #000; /* keep general text readable on light bg */
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* playboard color */
+canvas {
+  border: 2px solid rgba(0, 80, 30, 0.9); /* darker green border */
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  background: linear-gradient(180deg, #1aa64a 0%, #0f7a2a 100%); /* green playboard */
+}
+
+/* scoreboard color */
+#scoreboard {
+  width: 220px;
+  padding: 12px;
+  border-radius: 8px;
+  background: #ff9800; /* orange */
+  border: 1px solid rgba(0,0,0,0.12);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  color: #ff0000; /* red text */
+}
+#current-score {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  text-align: center;
+  color: #ff0000; /* ensure score text is red */
+}
+#score-controls {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+#score-controls button {
+  flex: 1;
+  padding: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  border-radius: 4px;
+  border: none;
+  background: #ffb366; /* lighter orange */
+  color: #ff0000; /* red button text */
+}
+#high-scores {
+  max-height: 260px;
+  overflow: auto;
+  font-size: 14px;
+  padding-left: 18px;
+  color: #ff0000; /* red for list items */
+}
+
+/* pause button color */
+#pause-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+#pauseBtn {
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 6px;
+  border: none;
+  background: #0066cc;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+#pauseBtn:hover { background: #005bb5; }

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Basic Tetris HTML Game</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="tetris.css">
+</head>
+<body>
+<canvas width="320" height="640" id="game"></canvas>
+
+<!-- Scoreboard of the ui interface -->
+<div id="scoreboard" aria-live="polite">
+  <div id="current-score">Score: 0</div>
+  <div id="score-controls">
+    <button id="saveScore">Save</button>
+    <button id="clearScores">Clear</button>
+  </div>
+  <h4 style="margin:6px 0 4px 0;">High Scores</h4>
+  <ol id="high-scores"></ol>
+</div>
+
+<!-- pause button placed near the scoreboard-->
+<div id="pause-container">
+  <button id="pauseBtn" type="button">Pause</button>
+</div>
+
+<!-- load external of the javascript -->
+<script src="tetris.js"></script>
+</body>
+</html>
