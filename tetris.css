@@ -70,9 +70,10 @@ canvas {
 #pause-container {
   display: flex;
   justify-content: center;
+  gap: 8px; /* allow spacing between pause and restart */
   margin-top: 8px;
 }
-#pauseBtn {
+#pauseBtn, #restartBtn {
   padding: 8px 12px;
   font-size: 14px;
   cursor: pointer;
@@ -82,4 +83,4 @@ canvas {
   color: #fff;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
-#pauseBtn:hover { background: #005bb5; }
+#pauseBtn:hover, #restartBtn:hover { background: #005bb5; }

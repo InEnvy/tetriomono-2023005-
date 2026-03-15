@@ -134,6 +134,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (clearBtn) clearBtn.addEventListener('click', clearHighScores);
   const pauseBtn = document.getElementById('pauseBtn');
   if (pauseBtn) pauseBtn.addEventListener('click', togglePause);
+  // issue 2: wire restart button
+  const restartBtn = document.getElementById('restartBtn');
+  if (restartBtn) restartBtn.addEventListener('click', restartGame);
 });
 
 // placing the tetromino on the playboard 
@@ -250,12 +253,13 @@ const tetrominos = {
   ]
 };
 
-// color of each tetromino pieces
+// color of each tetromino
 const colors = {
   'I': 'cyan',
   'O': 'yellow',
   'T': 'purple',
-  'S': 'green',
+  // issue 3: changed S piece from green to sky-blue so it doesn't blend with green colored playboard
+  'S': '#00bfff',
   'Z': 'red',
   'J': 'blue',
   'L': 'orange'
@@ -293,6 +297,38 @@ function togglePause() {
     btn.textContent = 'Pause';
     rAF = requestAnimationFrame(loop);
   }
+}
+
+// issue 2: add restart function
+function restartGame() {
+  // stop current loop
+  cancelAnimationFrame(rAF);
+
+  // clear playfield rows
+  for (let row = -2; row < 20; row++) {
+    playfield[row] = playfield[row] || [];
+    for (let col = 0; col < 10; col++) {
+      playfield[row][col] = 0;
+    }
+  }
+
+  // reset sequence and state
+  tetrominoSequence.length = 0;
+  score = 0;
+  updateScoreDisplay();
+
+  // reset counters and flags
+  count = 0;
+  gameOver = false;
+  paused = false;
+
+  // reset pause button label if present
+  const pauseBtn = document.getElementById('pauseBtn');
+  if (pauseBtn) pauseBtn.textContent = 'Pause';
+
+  // get next piece and restart loop
+  tetromino = getNextTetromino();
+  rAF = requestAnimationFrame(loop);
 }
 
 // the game loop
@@ -343,6 +379,23 @@ function loop() {
 document.addEventListener('keydown', function(e) {
   if (gameOver) return;
   if (paused) return; // ignore input while paused (added)
+
+  // issue 1: space to hard drop
+  if (e.which === 32) {
+    // hard drop piece until it collides, then place
+    while (isValidMove(tetromino.matrix, tetromino.row + 1, tetromino.col)) {
+      tetromino.row++;
+    }
+    // issue 1: places the piece immediately
+    placeTetromino();
+    return;
+  }
+
+  // issue 2: is 'R' or 'r' to restart
+  if (e.key === 'r' || e.key === 'R') {
+    restartGame();
+    return;
+  }
 
   // left and right arrow keys (move)
   if (e.which === 37 || e.which === 39) {
