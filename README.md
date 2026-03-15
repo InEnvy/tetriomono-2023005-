@@ -8,4 +8,5 @@ Functionalities:
 1. playboard of tetris with the pieces going down 
 2. scoreboard of saving the score
 3. pause function to pause the game
+
   
