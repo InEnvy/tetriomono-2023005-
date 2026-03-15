@@ -1,4 +1,5 @@
 Tetris game:
+
 how to run: 
 to make it work in the extension install live server it will open up a host website for you and how to do that is right below your visual studio code thats a button thats says go live it straight away.
 Functionalities:
